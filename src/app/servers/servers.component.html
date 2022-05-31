@@ -1,6 +1,29 @@
-<button class="btn btn-primary" [disabled]="!allowNewServer" >Add Server</button> <!-- disabled doesnt allow for the button to be clicked but that is hard coded in the html -->
+<Label>Server Name</Label>
+<!-- <input 
+type="text" 
+class="form-control" 
+(input)="onUpdateServerName($event)" 
+/> -->
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<!-- <p>{{ serverName }}</p> -->
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+<!-- disabled doesnt allow for the button to be clicked but that is hard coded in the html -->
 <!-- adding brackets indicate to angular that we are using  property bonding
 we want to dynamicaly bind some property -->
-<p [innerText]="allowNewServer"></p>
-<app-server></app-server>
-<app-server></app-server>
+<!-- <p [innerText]="allowNewServer"></p> -->
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<!--string introperlation-->
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+<!-- <ng-template #noServer>
+  <p>No server was created!</p>
+</ng-template> -->
+<app-server *ngFor="let server of servers"></app-server>
+
+
+<!-- the click uses a method to make an event happen-->
